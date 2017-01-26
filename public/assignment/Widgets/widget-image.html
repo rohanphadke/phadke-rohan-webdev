@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Widget Image</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="../css/style.css" rel="stylesheet"/>
+</head>
+<body>
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <p class="navbar-text pull-left">
+            <a class="navbar-link" href="page-list.html">
+                                <span class="glyphicon glyphicon-chevron-left">
+                                </span>
+            </a>
+        </p>
+        <a class="navbar-brand" href="#">
+            Widget Edit
+        </a>
+        <p class="navbar-text pull-right">
+            <a href="page-list.html" class="navbar-link">
+                                <span class="glyphicon glyphicon-ok">
+                                </span>
+            </a>
+        </p>
+    </div>
+</nav>
+
+<div class="container">
+    <h1></h1>
+    <form>
+        <div class="form-group">
+            <label for="username">Name</label>
+            <input type="text" class="form-control" id="name" placeholder="Image Name">
+        </div>
+        <div class="form-group">
+            <label for="username">Text</label>
+            <input type="text" class="form-control" id="name" placeholder="Text">
+        </div>
+        <div class="form-group">
+            <label for="username">URL</label>
+            <input type="text" class="form-control" id="name" placeholder="Image URL">
+        </div>
+        <div class="form-group">
+            <label for="username">Width</label>
+            <input type="text" class="form-control" id="name" placeholder="Image Width">
+        </div>
+        <div class="form-group">
+            <label class="form-group" for="username">URL</label>
+            <div class="input-group">
+                <label class="input-group-btn">
+                    <span class="btn btn-info">
+                        Choose File(s): <input type="file" style="display: none;" multiple>
+                    </span>
+                </label>
+                <input type="text" class="form-control" id="" placeholder="No File Chosen">
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="container">
+    <a class="btn btn-primary  btn-block"
+       href="page-list.html">Upload Image</a>
+    <a class="btn btn-danger  btn-block"
+       href="page-list.html">Delete</a>
+</div>
+</body>
+</html>

@@ -2,22 +2,44 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="../css/style.css" rel="stylesheet"/>
 </head>
 <body>
     <div class="container">
         <h1>Register</h1>
+        <label for="first-name-input-register">First Name</label>
         <input type="text"
                class="form-control"
-               placeholder="username"/>
+               placeholder="Alice"
+               id="first-name-input-register"/>
+        <label for="last-name-input-register">Last Name</label>
+        <input type="text"
+               class="form-control"
+               placeholder="Wonderland"
+               id="last-name-input-register"/>
+        <label for="username-input-register">Username</label>
+        <input type="text"
+               class="form-control"
+               placeholder="username"
+               id="username-input-register"/>
+        <label for="email-input-register">Email</label>
+        <input type="email"
+               class="form-control"
+               placeholder="alice@wonderland.com"
+               id="email-input-register"/>
+        <label for="password-input-register">Password</label>
         <input type="password"
                class="form-control"
-               placeholder="password"/>
+               placeholder="password"
+               id="password-input-register"/>
+        <label for="password-confirm-input-register">Confirm Password</label>
         <input type="password"
                class="form-control"
-               placeholder="very password"/>
+               placeholder="confirm password"
+               id="password-confirm-input-register"/>
         <a class="btn btn-primary btn-block"
            href="profile.html">Register</a>
         <a class="btn btn-danger  btn-block"

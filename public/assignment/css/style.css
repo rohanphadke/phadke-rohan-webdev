@@ -1,11 +1,112 @@
-input.form-control {
+input.form-control,
+textarea.form-control {
     margin-bottom: 5px;
 }
 
+.add-margin-bottom {
+    margin-bottom: 20px;
+}
+
+.add-margins-padding{
+    margin: 15px;
+    padding: 15px;
+}
+
+.margin-top-label {
+    margin-top: 10px;
+}
+
 body {
-    padding-top: 36px;
+    padding-top: 60px;
+    padding-bottom: 55px;
+}
+
+.margin-left-right-auto{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.margin-bottom-5{
+    margin-bottom: 5px;
+}
+
+.padding-10-top-bottom{
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+.margin-left-right-15{
+    margin-left: 15px;
+    margin-right:15px;
+}
+
+.margin-left-10{
+    margin-left: 10px;
+}
+
+.margin-right-10{
+    margin-right: 10px;
+}
+
+.navbar-text {
+    float: left;
+    margin-right: 15px;
+    margin-left: 15px;
+}
+
+.navbar>.container-fluid .navbar-brand {
+    margin-left: -15px;
+}
+
+.flash-toolbar{
+    position: absolute;
+    right: 30px;
+    background-color: white;
+    padding: 5px;
+    border-bottom-left-radius: 5px;
+    opacity: 0.7;
+    z-index: 2;
+}
+
+.flash-toolbar-youtube-widget{
+    position: absolute;
+    right: 0px;
+    background-color: white;
+    padding: 5px;
+    border-bottom-left-radius: 5px;
+    opacity: 0.7;
+    z-index: 2;
+}
+
+.no-underline-hover{
+    text-decoration: none!important;
 }
 
 .glyphicon-vectical-align {
     vertical-align: inherit;
+}
+
+.wbdv-left-pane {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    padding-top: 15px;
+    overflow: auto;
+}
+.wbdv-right-pane {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    margin-bottom: 50px;
+    margin-top: 50px;
+    padding-left: 15px;
+    padding-right: 15px;
+    overflow-y: auto;
+}
+
+.flash-file-chooser{
+    display: none!important;
 }

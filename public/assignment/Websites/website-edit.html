@@ -2,49 +2,127 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Website</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="../css/style.css" rel="stylesheet"/>
 </head>
 <body>
     <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container-fluid">
-            <p class="navbar-text pull-left">
-                <a class="navbar-link" href="website-list.html">
-                        <span class="glyphicon glyphicon-chevron-left">
-                        </span>
+        <div class="row container-fluid">
+            <div class="col-sm-4 hidden-xs">
+                <div class="navbar-text pull-left">
+                    <a href="website-list.html">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                    </a>
+                </div>
+                <div class="navbar-brand pull-left">
+                    <a class="no-underline-hover" href="website-list.html">
+                        Websites
+                    </a>
+                </div>
+                <div class="navbar-text pull-right">
+                    <a href="website-new.html">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </a>
+                </div>
+            </div>
+            <div class="col-sm-8 col-xs-12">
+                <div class="navbar-text pull-left">
+                    <a href="website-list.html">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                    </a>
+                </div>
+                <div class="navbar-text pull-right">
+                    <a href="website-list.html">
+                        <span class="glyphicon glyphicon-ok"></span>
+                    </a>
+                </div>
+                <div class="navbar-brand pull-left">
+                    <a href="#" class="no-underline-hover">
+                        Edit Website
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="row container-fluid">
+        <div class="col-sm-4 hidden-xs wbdv-left-pane">
+            <div class="row container-fluid padding-10-top-bottom">
+                <div class="col-xs-10">
+                    <a href="../Pages/page-list.html" class="no-underline-hover">Address Book App</a>
+                </div>
+                <div class="col-xs-2">
+                    <a href="website-edit.html">
+                        <span class="glyphicon glyphicon-edit pull-right"></span>
+                    </a>
+                </div>
+            </div>
+            <div class="row container-fluid padding-10-top-bottom">
+                <div class="col-xs-10">
+                    <a href="../Pages/page-list.html" class="no-underline-hover">Blogger</a>
+                </div>
+                <div class="col-xs-2">
+                    <a href="website-edit.html">
+                        <span class="glyphicon glyphicon-edit pull-right"></span>
+                    </a>
+                </div>
+            </div>
+            <div class="row container-fluid padding-10-top-bottom">
+                <div class="col-xs-10">
+                    <a href="../Pages/page-list.html" class="no-underline-hover">Blogging App</a>
+                </div>
+                <div class="col-xs-2">
+                    <a href="website-edit.html">
+                        <span class="glyphicon glyphicon-edit pull-right"></span>
+                    </a>
+                </div>
+            </div>
+            <div class="row container-fluid padding-10-top-bottom">
+                <div class="col-xs-10">
+                    <a href="../Pages/page-list.html" class="no-underline-hover">Script Testing App</a>
+                </div>
+                <div class="col-xs-2">
+                    <a href="website-edit.html">
+                        <span class="glyphicon glyphicon-edit pull-right"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-8 col-xs-12 wbdv-right-pane">
+            <div class="margin-left-right-15">
+                <label for="website-name" class="margin-top-label">Website Name</label>
+                <input placeholder="Website Name"
+                       value="Blogger"
+                       class="form-control"
+                       id="website-name"/>
+
+                <label for="website-description">Website Description</label>
+                <textarea placeholder="Website Description"
+                          class="form-control"
+                          id="website-description"
+                          rows="4">This is the description of blogger</textarea>
+
+                <a href="website-list.html" class="btn btn-primary btn-block">
+                    <span class="glyphicon glyphicon-ok margin-right-10"></span>Update
                 </a>
-            </p>
-            <a class="navbar-brand" href="#">
-                Edit Website
-            </a>
+                <a href="website-list.html" class="btn btn-danger btn-block">
+                    <span class="glyphicon glyphicon-trash margin-right-10"></span>Delete
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <nav class="navbar navbar-default navbar-fixed-bottom">
+        <div class="container-fluid">
             <p class="navbar-text pull-right">
-                <a href="website-list.html" class="navbar-link">
-                        <span class="glyphicon glyphicon-ok">
-                        </span>
+                <a href="../User/profile.html" >
+                    Alice Wonderland<span class="glyphicon glyphicon-user margin-left-10"></span>
                 </a>
             </p>
         </div>
     </nav>
-
-    <div class="container">
-        <h1></h1>
-        <form>
-            <div class="form-group">
-                <label for="username">Name</label>
-                <input type="text" class="form-control" id="name" placeholder="Name">
-            </div>
-            <div class="form-group">
-                <label for="description">Description</label>
-                <textarea class="form-control" rows="5" id="description" placeholder="Description"></textarea>
-            </div>
-        </form>
-    </div>
-
-    <div class="container">
-        <a class="btn btn-danger  btn-block"
-           href="website-list.html">Delete</a>
-    </div>
 
 </body>
 </html>

@@ -1,0 +1,96 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="row container-fluid">
+        <div class="col-sm-4 hidden-xs">
+            <div class="navbar-text pull-left">
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+            </div>
+            <div class="navbar-brand pull-left">
+                <a class="no-underline-hover" href="#/user/{{model.userId}}/website/{{model.websiteId}}/page">
+                    Pages
+                </a>
+            </div>
+            <div class="navbar-text pull-right">
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/new">
+                    <span class="glyphicon glyphicon-plus"></span>
+                </a>
+            </div>
+        </div>
+        <div class="col-sm-8 col-xs-12">
+            <div class="navbar-text pull-left">
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+            </div>
+            <div class="navbar-text pull-right">
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page">
+                    <span class="glyphicon glyphicon-ok"></span>
+                </a>
+            </div>
+            <div class="navbar-brand pull-left">
+                <a class="no-underline-hover" href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}">
+                    Edit Page
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="row container-fluid">
+    <div class="col-sm-4 hidden-xs wbdv-left-pane">
+        <div ng-repeat="page in model.pages" class="row container-fluid padding-10-top-bottom">
+            <div class="col-xs-10">
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}/widget" class="no-underline-hover">{{page.name}}</a>
+            </div>
+            <div class="col-xs-2">
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}">
+                    <span class="glyphicon glyphicon-edit pull-right"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-8 col-xs-12 wbdv-right-pane">
+        <div class="margin-left-right-15">
+            <label for="page-name" class="margin-top-label">Page Name</label>
+            <input ng-model="model.page.name"
+                   placeholder="Page Name"
+                   class="form-control"
+                   id="page-name"/>
+
+            <label for="page-description">Page Description</label>
+            <textarea ng-model="model.page.description"
+                      placeholder="Page Description"
+                      class="form-control"
+                      id="page-description"
+                      rows="4"></textarea>
+
+            <a ng-click="model.updatePage(model.pageId, model.page)" class="btn btn-primary btn-block">
+                <span class="glyphicon glyphicon-ok margin-right-10"></span>Update
+            </a>
+            <a ng-click="model.deletePage(model.pageId)" class="btn btn-danger btn-block add-margin-bottom">
+                <span class="glyphicon glyphicon-trash margin-right-10"></span>Delete
+            </a>
+
+            <div class="alert alert-danger" ng-show="model.error">
+                {{model.error}}
+            </div>
+
+            <div class="alert alert-success" ng-show="model.message">
+                {{model.message}}
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <p class="navbar-text pull-right">
+            <a href="#/user/{{model.userId}}">
+                Alice Wonderland<span class="glyphicon glyphicon-user margin-left-10"></span>
+            </a>
+        </p>
+    </div>
+</nav>

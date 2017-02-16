@@ -1,0 +1,44 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+            <div class="navbar-text pull-left">
+                <a href="#/user/{{model.userId}}">
+                    <span class="glyphicon glyphicon-chevron-left">
+                    </span>
+                </a>
+            </div>
+            <div class="navbar-brand pull-left">
+                <a href="#/user/{{model.userId}}/website" class="no-underline-hover">
+                    Websites
+                </a>
+            </div>
+            <div class="navbar-text pull-right">
+                <a href="#/user/{{model.userId}}/website/new">
+                    <span class="glyphicon glyphicon-plus">
+                    </span>
+                </a>
+            </div>
+    </div>
+</nav>
+
+<div ng-repeat="website in model.websites" class="row container-fluid margin-left-right-auto padding-10-top-bottom">
+    <div class="col-xs-10">
+        <a href="#/user/{{model.userId}}/website/{{website._id}}/page">{{website.name}}</a>
+    </div>
+    <div class="col-xs-2">
+        <a href="#/user/{{model.userId}}/website/{{website._id}}/">
+            <span class="glyphicon glyphicon-edit pull-right"></span>
+        </a>
+    </div>
+</div>
+
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <div class="navbar-text pull-right">
+            <a href="#/user/{{model.userId}}" class="no-underline-hover">
+                Alice Wonderland<span class="glyphicon glyphicon-user margin-left-10">
+            </span>
+            </a>
+        </div>
+    </div>
+</nav>

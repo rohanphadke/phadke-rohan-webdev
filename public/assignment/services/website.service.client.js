@@ -13,6 +13,14 @@
             { "_id": "789", "name": "Chess",       "developerId": "234", "description": "Lorem", created: new Date() }
         ];
 
+        return {
+            "createWebsite" : createWebsite,
+            "findWebsiteById" : findWebsiteById,
+            "updateWebsite" : updateWebsite,
+            "deleteWebsite" : deleteWebsite,
+            "findAllWebsitesForUser" : findAllWebsitesForUser
+        };
+
         function findWebsiteById(wid){
             console.log(wid);
             for(var w in websites){
@@ -62,17 +70,9 @@
         function createWebsite(userId, website) {
             website.developerId = userId;
             website._id = (new Date()).getTime();
-            websites.push(website)
+            websites.push(website);
             console.log(websites);
             return angular.copy(website);
         }
-
-        return {
-            "createWebsite" : createWebsite,
-            "findWebsiteById" : findWebsiteById,
-            "updateWebsite" : updateWebsite,
-            "deleteWebsite" : deleteWebsite,
-            "findAllWebsitesForUser" : findAllWebsitesForUser
-        };
     }
 })();

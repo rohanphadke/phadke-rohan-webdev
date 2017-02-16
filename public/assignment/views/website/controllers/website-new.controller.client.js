@@ -8,7 +8,9 @@
 
         function init(){
             vm.userId = $routeParams.uid;
+
             vm.createWebsite = createWebsite;
+
             vm.websites = WebsiteService.findAllWebsitesForUser(vm.userId);
         }
         init();

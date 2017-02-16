@@ -10,8 +10,10 @@
             vm.userId = $routeParams.uid;
             vm.websiteId = $routeParams.wid;
             vm.pageId = $routeParams.pid;
+
             vm.updatePage = updatePage;
             vm.deletePage = deletePage;
+
             vm.pages = PageService.findAllPagesForWebsite(vm.websiteId);
             vm.page = PageService.findPageById(vm.pageId);
         }
@@ -27,8 +29,8 @@
         }
 
         function deletePage (pid) {
-            PageService.deletepage(pid);
-            $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "page");
+            PageService.deletePage(pid);
+            $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page");
         }
     }
 })();

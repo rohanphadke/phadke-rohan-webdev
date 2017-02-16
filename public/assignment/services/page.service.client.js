@@ -14,6 +14,14 @@
             { "_id": "141", "name": "Score Page",       "websiteId": "789", "description": "Lorem", created: new Date() }
         ];
 
+        return{
+            "findAllPagesForWebsite": findAllPagesForWebsite,
+            "findPageById": findPageById,
+            "updatePage": updatePage,
+            "deletePage": deletePage,
+            "createPage": createPage
+        };
+
         function findAllPagesForWebsite(websiteId) {
             var pgs = [];
             for(var p in pages){
@@ -65,13 +73,5 @@
             pages.push(page);
             return angular.copy(page);
         }
-
-        return{
-            "findAllPagesForWebsite": findAllPagesForWebsite,
-            "findPageById": findPageById,
-            "updatePage": updatePage,
-            "deletePage": deletePage,
-            "createPage": createPage
-        };
     }
 })();

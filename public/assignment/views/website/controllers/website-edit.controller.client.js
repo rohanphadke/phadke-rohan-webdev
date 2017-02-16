@@ -9,8 +9,10 @@
         function init(){
             vm.userId = $routeParams.uid;
             vm.websiteId = $routeParams.wid;
+
             vm.updateWebsite = updateWebsite;
             vm.deleteWebsite = deleteWebsite;
+
             vm.websites = WebsiteService.findAllWebsitesForUser(vm.userId);
             vm.website = WebsiteService.findWebsiteById(vm.websiteId);
         }

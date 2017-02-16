@@ -12,6 +12,7 @@
             vm.pageId = $routeParams.pid;
             vm.widgetId = $routeParams.wgid;
             vm.widgetType = $routeParams.wtid;
+
             vm.getEditorTemplateUrl = getEditorTemplateUrl;
             vm.createWidget = createWidget;
         }

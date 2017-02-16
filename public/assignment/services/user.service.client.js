@@ -11,6 +11,14 @@
             {_id: "456", username: "jannunzi", password: "jannunzi", firstName: "Jose",   lastName: "Annunzi", email: "jose@annunzi.com"}
         ];
 
+        return {
+            "users": users,
+            "createUser": createUser,
+            "updateUser": updateUser,
+            "findUserByCredentials": findUserByCredentials,
+            "findUserById": findUserById
+        };
+
         function findUserById(uid) {
             for (var u in users){
                 if(users.hasOwnProperty(u)){
@@ -51,38 +59,11 @@
             return null;
         }
 
-
-        function generateId(){
-            for(i=100; i<1000;i++){
-                idExists = false;
-                for(var u in users){
-                    if(users.hasOwnProperty(u)){
-                        if(users[u]._id == i){
-                            idExists = true;
-                            break;
-                        }
-                    }
-                }
-                if(!idExists){
-                    return i;
-                }
-            }
-        }
-
         function createUser(newUser){
-            var id = generateId();
+            var id = (new Date()).getTime();
             user = {_id: id, username: newUser.username,    password: newUser.password,    firstName: newUser.firstName,  lastName: newUser.lastName, email: newUser.email}
-            users.push(user)
+            users.push(user);
             return angular.copy(user);
         }
-
-        return {
-            "users": users,
-            "createUser": createUser,
-            "updateUser": updateUser,
-            "findUserByCredentials": findUserByCredentials,
-            "findUserById": findUserById
-        };
-
     }
 })();

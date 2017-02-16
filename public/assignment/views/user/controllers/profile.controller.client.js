@@ -8,7 +8,9 @@
 
         function init() {
             var userId = $routeParams['uid'];
+
             vm.update = update;
+
             vm.user = UserService.findUserById(userId);
         }
         init();

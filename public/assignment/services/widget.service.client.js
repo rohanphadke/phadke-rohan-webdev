@@ -20,6 +20,14 @@
         this.findAllWidgetsForPage = findAllWidgetsForPage;
         this.findWidgetById = findWidgetById;
 
+        return {
+            "findAllWidgetsForPage": findAllWidgetsForPage,
+            "findWidgetById": findWidgetById,
+            "createWidget": createWidget,
+            "updateWidget": updateWidget,
+            "deleteWidget": deleteWidget
+        };
+
         function findAllWidgetsForPage(pageId) {
             wgs = [];
             for(var wg in widgets){
@@ -84,14 +92,6 @@
                     }
                 }
             }
-        }
-
-        return {
-            "findAllWidgetsForPage": findAllWidgetsForPage,
-            "findWidgetById": findWidgetById,
-            "createWidget": createWidget,
-            "updateWidget": updateWidget,
-            "deleteWidget": deleteWidget
         }
     }
 })();

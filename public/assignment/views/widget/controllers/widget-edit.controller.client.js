@@ -5,15 +5,18 @@
 
     function widgetEditController($routeParams, $location, WidgetService) {
         var vm = this;
-        vm.userId = $routeParams.uid;
-        vm.websiteId = $routeParams.wid;
-        vm.pageId = $routeParams.pid;
-        vm.widgetId = $routeParams.wgid;
-        vm.getEditorTemplateUrl = getEditorTemplateUrl;
-        vm.updateWidget = updateWidget;
-        vm.deleteWidget = deleteWidget;
+
 
         function init() {
+            vm.userId = $routeParams.uid;
+            vm.websiteId = $routeParams.wid;
+            vm.pageId = $routeParams.pid;
+            vm.widgetId = $routeParams.wgid;
+
+            vm.getEditorTemplateUrl = getEditorTemplateUrl;
+            vm.updateWidget = updateWidget;
+            vm.deleteWidget = deleteWidget;
+
             vm.widget = WidgetService.findWidgetById(vm.widgetId);
         }
         init();

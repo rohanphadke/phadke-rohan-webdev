@@ -29,7 +29,7 @@
             var sites = [];
             for(var w in websites){
                 if(websites.hasOwnProperty(w)){
-                    if(websites[w].developerId === userId){
+                    if(websites[w].developerId == userId){
                         sites.push(websites[w]);
                     }
                 }
@@ -40,7 +40,7 @@
         function updateWebsite(website) {
             for(var w in websites) {
                 var ws = websites[w];
-                if( ws._id === website._id) {
+                if( ws._id == website._id) {
                     ws.name = website.name;
                     ws.description = website.description;
                     return angular.copy(ws);
@@ -52,7 +52,7 @@
         function deleteWebsite(wid){
             for(var w in websites){
                 if(websites.hasOwnProperty(w)){
-                    if(websites[w]._id === wid){
+                    if(websites[w]._id == wid){
                         websites.splice(w,1);
                     }
                 }

@@ -14,7 +14,7 @@
             { "_id": "567", "widgetType": "HEADER", "pageId": "132", "size": 4, "text": "Lorem ipsum"},
             { "_id": "678", "widgetType": "YOUTUBE", "pageId": "987", "name": "Yacht video", "width": "100%",
                 "url": "https://youtu.be/AM2Ivdi9c4E" },
-            { "_id": "789", "widgetType": "HTML", "pageId": "141", "text": "<p>Lorem ipsum</p>"}
+            { "_id": "789", "widgetType": "HTML", "pageId": "141", "name": "Lorem Text", "text": "<p>Lorem ipsum</p>"}
         ];
 
         this.findAllWidgetsForPage = findAllWidgetsForPage;
@@ -32,7 +32,7 @@
 
         function findWidgetById(widgetId) {
             for(var w in widgets) {
-                if(widgets[w]._id === widgetId) {
+                if(widgets[w]._id == widgetId) {
                     return angular.copy(widgets[w]);
                 }
             }

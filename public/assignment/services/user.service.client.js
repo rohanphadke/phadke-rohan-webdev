@@ -41,7 +41,7 @@
             for(var u in users){
                 if(users.hasOwnProperty(u)){
                     var user=users[u];
-                    if(user._id === newUser._id){
+                    if(user._id == newUser._id){
                         user.firstName = newUser.firstName;
                         user.lastName = newUser.lastName;
                         return angular.copy(user);
@@ -57,7 +57,7 @@
                 idExists = false;
                 for(var u in users){
                     if(users.hasOwnProperty(u)){
-                        if(users[u]._id === i){
+                        if(users[u]._id == i){
                             idExists = true;
                             break;
                         }

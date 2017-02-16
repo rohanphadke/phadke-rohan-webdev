@@ -3,15 +3,18 @@
 <label for="header-name">Widget Name</label>
 <input ng-model="model.widget.name"
        class="form-control"
-       id="header-name"/>
+       id="header-name"
+       placeholder="Widget Name"/>
 
 <label for="header-text">Text</label>
 <input ng-model="model.widget.text"
        class="form-control"
-       id="header-text"/>
+       id="header-text"
+placeholder="Widget Text"/>
 
 <label for="header-size">Size</label>
-<select class="form-control"
+<select ng-model="model.widget.size"
+        class="form-control"
         id="header-size">
     <option>1</option>
     <option>2</option>

@@ -1,52 +1,45 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-text pull-left">
-            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget">
-                <span class="glyphicon glyphicon-chevron-left">
-                </span>
+            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/new">
+                <span class="glyphicon glyphicon-chevron-left"></span>
             </a>
         </div>
         <div class="navbar-brand pull-left">
-            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/new" class="no-underline-hover">
-                Choose Widget
+            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/type/{{model.widgetType}}" class="no-underline-hover">
+                New Widget
             </a>
         </div>
         <div class="navbar-text pull-right">
-            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget">
-                <span class="glyphicon glyphicon-remove">
-                </span>
+            <a ng-click="model.createWidget(model.pageId,model.widget)">
+                <span class="glyphicon glyphicon-floppy-disk"></span>
             </a>
         </div>
     </div>
 </nav>
 
-<div class="row container-fluid margin-left-right-auto padding-10-top-bottom">
-    <div class="col-xs-10">
-        <a href="#/widget-header" class="no-underline-hover">Header</a>
-    </div>
+<div class="container-fluid"
+     ng-include="model.getEditorTemplateUrl(model.widgetType)">
 </div>
-<div class="row container-fluid margin-left-right-auto padding-10-top-bottom">
-    <div class="col-xs-10">
-        <a href="#/widget-image" class="no-underline-hover">Image</a>
-    </div>
-</div>
-<div class="row container-fluid margin-left-right-auto padding-10-top-bottom">
-    <div class="col-xs-10">
-        <a href="#/widget-youtube" class="no-underline-hover">Youtube</a>
-    </div>
-</div>
-<div class="row container-fluid margin-left-right-auto padding-10-top-bottom">
-    <div class="col-xs-10">
-        <a href="#/widget-list" class="no-underline-hover">HTML</a>
+
+<div class="container-fluid">
+    <a ng-click="model.createWidget(model.pageId,model.widget)" class="btn btn-primary btn-block margin-top-label">
+        <span class="glyphicon glyphicon-flopp-disk margin-right-10"></span>Save
+    </a>
+    <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/new" class="btn btn-danger btn-block add-margin-bottom">
+        <span class="glyphicon glyphicon-trash margin-right-10"></span>Cancel
+    </a>
+
+    <div class="alert alert-danger" ng-show="model.error">
+        {{model.error}}
     </div>
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">
         <div class="navbar-text pull-right">
-            <a href="#/profile" class="no-underline-hover">
-                <span class="glyphicon glyphicon-user margin-left-10">
-            </span>
+            <a href="#/user/{{model.userId}}" class="no-underline-hover">
+                <span class="glyphicon glyphicon-user margin-left-10"></span>
             </a>
         </div>
     </div>

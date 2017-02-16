@@ -39,9 +39,59 @@
             return null;
         }
 
+        function createWidget(pageId, widget, widgetType) {
+            widget.pageId = pageId;
+            widget.widgetType = widgetType;
+            widget._id = (new Date()).getTime();
+            widgets.push(widget);
+            return angular.copy(widget);
+        }
+
+        function updateWidget(wgid,widget){
+            for(var wg in widgets) {
+                if(widgets[wg]._id == wgid) {
+                    if (widgets[wg].widgetType == "HEADER") {
+                        widgets[wg].name = widget.name;
+                        widgets[wg].size = widget.size;
+                        widgets[wg].text = widget.text;
+                    }
+                    if (widgets[wg].widgetType == "IMAGE") {
+                        console.log("in");
+                        widgets[wg].name = widget.name;
+                        widgets[wg].width = widget.width;
+                        widgets[wg].url = widget.url;
+                    }
+                    if (widgets[wg].widgetType == "YOUTUBE") {
+                        widgets[wg].name = widget.name;
+                        widgets[wg].width = widget.width;
+                        widgets[wg].url = widget.url;
+                    }
+                    if (widgets[wg].widgetType == "HTML") {
+                        widgets[wg].name = widget.name;
+                        widgets[wg].text = widget.text;
+                    }
+                    return angular.copy(widgets[wg]);
+                }
+            }
+            return null;
+        }
+
+        function deleteWidget(wgid){
+            for(var wg in widgets){
+                if(widgets.hasOwnProperty(wg)){
+                    if(widgets[wg]._id == wgid){
+                        widgets.splice(wg,1);
+                    }
+                }
+            }
+        }
+
         return {
             "findAllWidgetsForPage": findAllWidgetsForPage,
-            "findWidgetById": findWidgetById
+            "findWidgetById": findWidgetById,
+            "createWidget": createWidget,
+            "updateWidget": updateWidget,
+            "deleteWidget": deleteWidget
         }
     }
 })();

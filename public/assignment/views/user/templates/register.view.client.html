@@ -2,6 +2,21 @@
 
     <h1>Register</h1>
 
+    <div ng-show="model.error" class="alert alert-danger">
+        {{model.error}}
+    </div>
+
+    <div ng-show="model.message" class="alert alert-info">
+        {{model.message}}
+    </div>
+
+    <label for="username-input-register">Username</label>
+    <input ng-model="model.user.username"
+           type="text"
+           class="form-control"
+           placeholder="username"
+           id="username-input-register"/>
+
     <label for="first-name-input-register">First Name</label>
     <input ng-model="model.user.firstName"
            type="text"
@@ -15,13 +30,6 @@
            class="form-control"
            placeholder="Wonderland"
            id="last-name-input-register"/>
-
-    <label for="username-input-register">Username</label>
-    <input ng-model="model.user.username"
-           type="text"
-           class="form-control"
-           placeholder="username"
-           id="username-input-register"/>
 
     <label for="email-input-register">Email</label>
     <input ng-model="model.user.email"

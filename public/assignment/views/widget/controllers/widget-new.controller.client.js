@@ -3,9 +3,11 @@
         .module("WebAppMaker")
         .controller("widgetNewController", widgetNewController);
 
-    function widgetNewController($routeParams, $location,   WidgetService) {
+    function widgetNewController($routeParams, $location, WidgetService) {
         var vm = this;
-
+        vm.getEditorTemplateUrl = getEditorTemplateUrl;
+        vm.createWidget = createWidget;
+        
         function init(){
             vm.userId = $routeParams.uid;
             vm.websiteId = $routeParams.wid;
@@ -13,8 +15,11 @@
             vm.widgetId = $routeParams.wgid;
             vm.widgetType = $routeParams.wtid;
 
-            vm.getEditorTemplateUrl = getEditorTemplateUrl;
-            vm.createWidget = createWidget;
+            WidgetService
+                .findAllWidgetsForPage(vm.pageId)
+                .success(function (widgets) {
+                    vm.widgets = widgets;
+                })
         }
         init();
 
@@ -23,13 +28,19 @@
         }
 
         function createWidget(pid,widget) {
-            var newWidget = WidgetService.createWidget(pid,widget,vm.widgetType);
-            if(newWidget == null){
-                vm.error = "website not added";
-            }else{
-                $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget");
-            }
+            WidgetService
+                .createWidget(pid,widget,vm.widgetType)
+                .success(function (newWidget) {
+                    if(newWidget == null){
+                        vm.error = "widget not added";
+                    }else{
+                        $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget");
+                        init();
+                    }
+                })
+                .error(function () {
+                    vm.error = "widget not created";
+                })
         }
-
     }
 })();

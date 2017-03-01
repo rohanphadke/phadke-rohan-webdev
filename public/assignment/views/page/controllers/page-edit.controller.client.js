@@ -14,23 +14,44 @@
             vm.updatePage = updatePage;
             vm.deletePage = deletePage;
 
-            vm.pages = PageService.findAllPagesForWebsite(vm.websiteId);
-            vm.page = PageService.findPageById(vm.pageId);
+            PageService
+                .findAllPagesForWebsite(vm.websiteId)
+                .success(function (pages) {
+                    vm.pages = pages;
+                });
+            PageService
+                .findPageById(vm.pageId)
+                .success(function (page) {
+                    vm.page = page;
+                });
         }
         init();
 
         function updatePage (pid, page) {
-            var update = PageService.updatePage(pid, page);
-            if(update == null){
-                vm.error = "update unsuccessful";
-            }else{
-                vm.message = "update successful";
-            }
+            PageService
+                .updatePage(pid,page)
+                .success(function (update) {
+                    if(update == null){
+                        vm.error = "update unsuccessful";
+                    }else{
+                        vm.message = "update successful";
+                        init();
+                    }
+                })
+                .error(function () {
+                    vm.error = "update unsuccessful";
+                });
         }
 
         function deletePage (pid) {
-            PageService.deletePage(pid);
-            $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page");
+            PageService
+                .deletePage(pid)
+                .success(function () {
+                    $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page");
+                })
+                .error(function () {
+                    vm.error = "website delete unsuccessful";
+                });
         }
     }
 })();

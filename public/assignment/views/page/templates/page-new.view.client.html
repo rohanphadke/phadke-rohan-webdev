@@ -41,10 +41,10 @@
     <div class="col-sm-4 hidden-xs wbdv-left-pane">
         <div ng-repeat="page in model.pages" class="row container-fluid padding-10-top-bottom">
             <div class="col-xs-10">
-                <a href="#/user/{{model.userId}}/website/{{website._id}}/page/{{page._id}}/widget" class="no-underline-hover">{{page.name}}</a>
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}/widget" class="no-underline-hover">{{page.name}}</a>
             </div>
             <div class="col-xs-2">
-                <a href="#/user/{{model.userId}}/website/{{website._id}}/page/{{page._id}}">
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}">
                     <span class="glyphicon glyphicon-edit pull-right"></span>
                 </a>
             </div>
@@ -67,7 +67,7 @@
                       rows="4"></textarea>
 
             <a ng-click="model.createPage(model.websiteId,model.page)" class="btn btn-primary btn-block">
-                <span class="glyphicon glyphicon-flopp-disk margin-right-10"></span>Save
+                <span class="glyphicon glyphicon-floppy-disk margin-right-10"></span>Save
             </a>
             <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page" class="btn btn-danger btn-block add-margin-bottom">
                 <span class="glyphicon glyphicon-trash margin-right-10"></span>Cancel

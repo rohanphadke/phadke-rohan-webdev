@@ -5,17 +5,22 @@
 
     function widgetListController($sce, $routeParams, WidgetService) {
         var vm = this;
+        vm.getYouTubeEmbedUrl = getYouTubeEmbedUrl;
+        vm.getTrustedHtml = getTrustedHtml;
+        vm.getWidgetTemplateUrl = getWidgetTemplateUrl;
 
         function init() {
             vm.userId = $routeParams.uid;
             vm.websiteId = $routeParams.wid;
             vm.pageId = $routeParams.pid;
 
-            vm.getYouTubeEmbedUrl = getYouTubeEmbedUrl;
-            vm.getTrustedHtml = getTrustedHtml;
-            vm.getWidgetTemplateUrl = getWidgetTemplateUrl;
+            WidgetService
+                .findAllWidgetsForPage(vm.pageId)
+                .success(function (widgets) {
+                    vm.widgets = widgets;
+                });
 
-            vm.widgets = WidgetService.findAllWidgetsForPage(vm.pageId);
+
         }
         init();
 

@@ -5,24 +5,35 @@
 
     function pageNewController($routeParams, $location, PageService) {
         var vm = this;
+        vm.createPage = createPage;
 
         function init(){
             vm.userId = $routeParams.uid;
             vm.websiteId = $routeParams.wid;
 
-            vm.createPage = createPage;
-
-            vm.pages = PageService.findAllPagesForWebsite(vm.websiteId);
+            PageService
+                .findAllPagesForWebsite(vm.websiteId)
+                .success(function (pages) {
+                    vm.pages = pages;
+                })
         }
         init();
 
         function createPage(wid,page) {
-            var newPage = PageService.createPage(wid,page);
-            if(newPage == null){
-                vm.error = "website not added";
-            }else{
-                $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page");
-            }
+            PageService
+                .createPage(wid,page)
+                .success(function (newPage) {
+                    if(newPage == null){
+                        vm.error = "page not added";
+                    }else{
+                        console.log(newPage);
+                        init();
+                        $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page");
+                    }
+                })
+                .error(function () {
+                    vm.error = "page not created";
+                });
         }
     }
 })();

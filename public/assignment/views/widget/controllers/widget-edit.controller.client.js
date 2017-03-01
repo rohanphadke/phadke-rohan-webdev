@@ -5,7 +5,9 @@
 
     function widgetEditController($routeParams, $location, WidgetService) {
         var vm = this;
-
+        vm.getEditorTemplateUrl = getEditorTemplateUrl;
+        vm.updateWidget = updateWidget;
+        vm.deleteWidget = deleteWidget;
 
         function init() {
             vm.userId = $routeParams.uid;
@@ -13,11 +15,16 @@
             vm.pageId = $routeParams.pid;
             vm.widgetId = $routeParams.wgid;
 
-            vm.getEditorTemplateUrl = getEditorTemplateUrl;
-            vm.updateWidget = updateWidget;
-            vm.deleteWidget = deleteWidget;
-
-            vm.widget = WidgetService.findWidgetById(vm.widgetId);
+            WidgetService
+                .findAllWidgetsForPage(vm.pageId)
+                .success(function (widgets) {
+                    vm.widgets = widgets;
+                });
+            WidgetService
+                .findWidgetById(vm.widgetId)
+                .success(function (widget) {
+                    vm.widget = widget;
+                })
         }
         init();
 
@@ -26,17 +33,30 @@
         }
 
         function updateWidget(widgetId,widget){
-            var update = WidgetService.updateWidget(widgetId, widget);
-            if(update == null){
-                vm.error = "update unsuccessful";
-            }else{
-                vm.message = "update successful";
-            }
+            WidgetService
+                .updateWidget(widgetId, widget)
+                .success(function (update) {
+                    if(update == null){
+                        vm.error = "update unsuccessful";
+                    }else{
+                        vm.message = "update successful";
+                        init();
+                    }
+                })
+                .error(function () {
+                    vm.error ="update unsuccessful";
+                })
         }
 
         function deleteWidget(wgid){
-            var del = WidgetService.deleteWidget(wgid);
-            $location.url('/user/' + vm.userId + '/website/' + vm.websiteId + '/page/' + vm.pageId + '/widget');
+            WidgetService
+                .deleteWidget(wgid)
+                .success(function () {
+                    $location.url('/user/' + vm.userId + '/website/' + vm.websiteId + '/page/' + vm.pageId + '/widget');
+                })
+                .error(function () {
+                    vm.error = "widget update unsuccessful";
+                });
         }
     }
 })();

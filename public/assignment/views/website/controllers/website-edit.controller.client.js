@@ -13,23 +13,45 @@
             vm.updateWebsite = updateWebsite;
             vm.deleteWebsite = deleteWebsite;
 
-            vm.websites = WebsiteService.findAllWebsitesForUser(vm.userId);
-            vm.website = WebsiteService.findWebsiteById(vm.websiteId);
+            WebsiteService
+                .findAllWebsitesForUser(vm.userId)
+                .success(function (websites) {
+                    vm.websites = websites;
+                });
+
+            WebsiteService
+                .findWebsiteById(vm.websiteId)
+                .success(function (website) {
+                    vm.website = website;
+                });
         }
         init();
 
         function updateWebsite (website) {
-            var update = WebsiteService.updateWebsite(website);
-            if(update == null){
-                vm.error = "update unsuccessful";
-            }else{
-                vm.message = "update successful";
-            }
+            WebsiteService
+                .updateWebsite(vm.websiteId,website)
+                .success(function (update) {
+                    if(update == null){
+                        vm.error = "update unsuccessful";
+                    }else{
+                        vm.message = "update successful";
+                        init();
+                    }
+                })
+                .error(function () {
+                    vm.error = "update unsuccessful";
+                });
         }
 
         function deleteWebsite (wid) {
-            WebsiteService.deleteWebsite(wid);
-            $location.url("/user/" + vm.userId + "/website");
+            WebsiteService
+                .deleteWebsite(wid)
+                .success(function () {
+                    $location.url("/user/" + vm.userId + "/website");
+                })
+                .error(function () {
+                    vm.error = "website delete unsuccessful";
+                });
         }
     }
 })();

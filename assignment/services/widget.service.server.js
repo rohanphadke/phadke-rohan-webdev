@@ -114,13 +114,11 @@ module.exports = function (app) {
         var mimetype      = myFile.mimetype;
 
 
-        console.log(widgetId);
-        console.log(pageId);
-        console.log(widgetName);
-        console.log(width);
+        console.log(widgets);
         widgets.push({"_id": widgetId, "widgetType": "IMAGE", "pageId": pageId, "name": widgetName, "width": width,
             "url": "../../../../../uploads/"+filename})
         console.log("../../../../../uploads/"+filename);
+        console.log(widgets);
         res.redirect("../../assignment/index.html#/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget");
     }
 

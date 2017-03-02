@@ -42,6 +42,7 @@ module.exports = function (app) {
                 users[u].firstName = newUser.firstName;
                 users[u].lastName = newUser.lastName;
                 res.send(users[u]);
+                return;
             }
         }
         res.sendStatus(404);
@@ -53,6 +54,7 @@ module.exports = function (app) {
             var user = users[u];
             if(user._id == userId){
                 res.send(user);
+                return;
             }
         }
         res.sendStatus(404);
@@ -73,6 +75,7 @@ module.exports = function (app) {
         for(var u in users){
             if(users[u].username == username){
                 res.send(users[u]);
+                return;
             }
         }
         res.sendStatus(404);
@@ -84,6 +87,7 @@ module.exports = function (app) {
         for(var u in users){
             if(users[u].username == username && users[u].password == password){
                 res.send(users[u]);
+                return;
             }
         }
         res.sendStatus(404);

@@ -1,9 +1,13 @@
 module.exports = function (app) {
+    var multer = require('multer');
+    var upload = multer({ dest: __dirname + '/../../public/uploads'});
+
     app.post('/api/page/:pageId/widget', createWidget);
     app.get('/api/page/:pageId/widget', findAllWidgetsForPage);
     app.get('/api/widget/:widgetId', findWidgetById);
     app.put('/api/widget/:widgetId', updateWidget);
     app.delete('/api/widget/:widgetId', deleteWidget);
+    app.post('/api/upload',upload.single('myFile'), uploadImage);
 
     var widgets = [
         { "_id": "123", "widgetType": "HEADER", "pageId": "234", "name": "GIZMODO Header", "size": 2, "text": "GIZMODO"},
@@ -16,6 +20,8 @@ module.exports = function (app) {
             "url": "https://youtu.be/AM2Ivdi9c4E" },
         { "_id": "789", "widgetType": "HTML", "pageId": "141", "name": "Lorem Text", "text": "<p>Lorem ipsum</p>"}
     ];
+
+    var newImage=null;
 
     function createWidget(req,res){
         var newWidget = req.body;
@@ -88,6 +94,34 @@ module.exports = function (app) {
             }
         }
         res.sendStatus(404);
+    }
+
+    function uploadImage(req, res) {
+
+        var widgetId      = (new Date()).getTime();
+        var width         = req.body.width;
+        var pageId        = req.body.pageId;
+        var userId        = req.body.userId;
+        var websiteId     = req.body.websiteId;
+        var myFile        = req.file;
+        var widgetName    = req.body.widgetName;
+
+        var originalname  = myFile.originalname; // file name on user's computer
+        var filename      = myFile.filename;     // new file name in upload folder
+        var path          = myFile.path;         // full path of uploaded file
+        var destination   = myFile.destination;  // folder where file is saved to
+        var size          = myFile.size;
+        var mimetype      = myFile.mimetype;
+
+
+        console.log(widgetId);
+        console.log(pageId);
+        console.log(widgetName);
+        console.log(width);
+        widgets.push({"_id": widgetId, "widgetType": "IMAGE", "pageId": pageId, "name": widgetName, "width": width,
+            "url": "../../../../../uploads/"+filename})
+        console.log("../../../../../uploads/"+filename);
+        res.redirect("../../assignment/index.html#/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget");
     }
 
 };

@@ -54,6 +54,7 @@ module.exports = function (app) {
                 websites[w].description = website.description;
                 websites[w].created = website.created;
                 res.json(websites[w]);
+                return;
             }
         }
         res.sendStatus(404);

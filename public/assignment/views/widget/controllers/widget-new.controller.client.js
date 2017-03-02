@@ -19,6 +19,7 @@
                 .findAllWidgetsForPage(vm.pageId)
                 .success(function (widgets) {
                     vm.widgets = widgets;
+                    vm.widget.operation = "new";
                 })
         }
         init();

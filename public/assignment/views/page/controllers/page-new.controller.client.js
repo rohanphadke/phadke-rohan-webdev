@@ -26,7 +26,6 @@
                     if(newPage == null){
                         vm.error = "page not added";
                     }else{
-                        console.log(newPage);
                         init();
                         $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page");
                     }

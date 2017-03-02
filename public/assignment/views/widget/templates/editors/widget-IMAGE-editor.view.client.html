@@ -1,13 +1,5 @@
 <h1>IMAGE Editor</h1>
 
-<div ng-show="model.error" class="alert alert-danger" role="alert">
-    {{model.error}}
-</div>
-
-<div ng-show="model.message" class="alert alert-success" role="alert">
-    {{model.message}}
-</div>
-
 <label for="image-name">Widget Name</label>
 <input ng-model="model.widget.name"
        class="form-control"
@@ -27,8 +19,11 @@
     <input  name="myFile"   type="file" class="form-control"/>
     <input  name="width"    value="{{model.widget.width}}" style="display: none"/>
     <input name="widgetName" value="{{model.widget.name}}" style="display:none"/>
+    <input name="widgetId" value="{{model.widget._id}}" style="display:none"/>
+    <input name="widgetOperation" value="{{model.widget.operation}}" style="display:none"/>
     <input name="pageId" value="{{model.pageId}}" style="display:none"/>
     <input name="userId" value="{{model.userId}}" style="display:none"/>
     <input name="websiteId" value="{{model.websiteId}}" style="display:none"/>
+
     <button type="submit"   class="btn btn-block btn-primary">Upload Image</button>
 </form>

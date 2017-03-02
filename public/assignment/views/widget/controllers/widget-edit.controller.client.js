@@ -24,6 +24,7 @@
                 .findWidgetById(vm.widgetId)
                 .success(function (widget) {
                     vm.widget = widget;
+                    vm.widget.operation = "edit";
                 })
         }
         init();

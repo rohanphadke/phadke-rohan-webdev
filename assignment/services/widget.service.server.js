@@ -21,12 +21,9 @@ module.exports = function (app) {
         { "_id": "789", "widgetType": "HTML", "pageId": "141", "name": "Lorem Text", "text": "<p>Lorem ipsum</p>"}
     ];
 
-    var newImage=null;
-
     function createWidget(req,res){
         var newWidget = req.body;
         newWidget._id = (new Date()).getTime() + "";
-        console.log(newWidget);
         widgets.push(newWidget);
         res.send(newWidget);
     }
@@ -98,13 +95,14 @@ module.exports = function (app) {
 
     function uploadImage(req, res) {
 
-        var widgetId      = (new Date()).getTime();
+        var widgetId      = req.body.widgetId;
         var width         = req.body.width;
         var pageId        = req.body.pageId;
         var userId        = req.body.userId;
         var websiteId     = req.body.websiteId;
         var myFile        = req.file;
         var widgetName    = req.body.widgetName;
+        var widgetOperation = req.body.widgetOperation;
 
         var originalname  = myFile.originalname; // file name on user's computer
         var filename      = myFile.filename;     // new file name in upload folder
@@ -113,13 +111,19 @@ module.exports = function (app) {
         var size          = myFile.size;
         var mimetype      = myFile.mimetype;
 
-
-        console.log(widgets);
-        widgets.push({"_id": widgetId, "widgetType": "IMAGE", "pageId": pageId, "name": widgetName, "width": width,
-            "url": "../../../../../uploads/"+filename})
-        console.log("../../../../../uploads/"+filename);
-        console.log(widgets);
-        res.redirect("../../assignment/index.html#/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget");
+        if(widgetOperation == "edit"){
+            for(var wg in widgets){
+                if(widgets[wg]._id == widgetId){
+                    widgets[wg].url= "../../../../../uploads/"+filename;
+                    res.redirect("../../assignment/index.html#/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget");
+                }
+            }
+        }else{
+            widgetId = (new Date()).getTime();
+            widgets.push({"_id": widgetId, "widgetType": "IMAGE", "pageId": pageId, "name": widgetName, "width": width,
+                "url": "../../../../../uploads/"+filename});
+            res.redirect("../../assignment/index.html#/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget");
+        }
     }
 
 };

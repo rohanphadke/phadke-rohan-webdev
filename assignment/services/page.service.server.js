@@ -55,6 +55,7 @@ module.exports = function (app) {
                 pages[p].description = page.description;
                 pages[p].created = page.created;
                 res.json(pages[p]);
+                return;
             }
         }
         res.sendStatus(404);

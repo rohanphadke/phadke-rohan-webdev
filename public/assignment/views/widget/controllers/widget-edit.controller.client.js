@@ -24,7 +24,11 @@
                 .findWidgetById(vm.widgetId)
                 .success(function (widget) {
                     vm.widget = widget;
+                    console.log("found this widget");
+                    console.log(widget);
+                    console.log(vm.widget);
                     vm.widget.operation = "edit";
+                    vm.widgetType = vm.widget.type;
                 })
         }
         init();

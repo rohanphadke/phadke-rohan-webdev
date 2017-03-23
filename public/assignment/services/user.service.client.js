@@ -23,12 +23,16 @@
             "findUserByUsername": findUserByUsername
         };
 
-        function deleteUser(userId){
-            return $http.delete('/api/user/'+userId);
+        function findUserByCredentials(username, password) {
+            return $http.get("/api/user?username="+username+"&password="+password);
         }
 
         function createUser(user){
             return $http.post("/api/user",user);
+        }
+
+        function findUserById(uid) {
+            return $http.get("/api/user/"+uid);
         }
 
         function updateUser(userId, newUser) {
@@ -39,12 +43,9 @@
             return $http.get("/api/user?username="+username);
         }
 
-        function findUserById(uid) {
-            return $http.get("/api/user/"+uid);
+        function deleteUser(userId){
+            return $http.delete('/api/user/'+userId);
         }
-        
-        function findUserByCredentials(username, password) {
-            return $http.get("/api/user?username="+username+"&password="+password);
-        }
+
     }
 })();

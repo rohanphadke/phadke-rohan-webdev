@@ -37,7 +37,7 @@
 
         function createWidget(pageId, widget, widgetType) {
             widget.pageId = pageId;
-            widget.widgetType = widgetType;
+            widget.type = widgetType;
             return $http.post('/api/page/'+pageId+'/widget',widget);
         }
 

@@ -13,19 +13,29 @@
             vm.userId = $routeParams.uid;
             vm.websiteId = $routeParams.wid;
             vm.pageId = $routeParams.pid;
-
+            console.log(vm.userId);
+            console.log(vm.websiteId);
+            console.log(vm.pageId);
             WidgetService
                 .findAllWidgetsForPage(vm.pageId)
                 .success(function (widgets) {
-                    vm.widgets = widgets;
+                    console.log("all found");
+                    console.log(widgets);
+                    vm.widgets = [];
+                    for(var w in widgets){
+                        vm.widgets.push(widgets[w]);
+                    }
+                    console.log(vm.widgets);
                 });
+            console.log("widgets are");
+            console.log(vm.widgets);
 
 
         }
         init();
 
         function getWidgetTemplateUrl(widgetType) {
-            var url = 'views/widget/templates/widget-'+widgetType+'.view.client.html';
+            var url = 'templates/widget/templates/widget-'+widgetType+'.view.client.html';
             return url;
         }
 

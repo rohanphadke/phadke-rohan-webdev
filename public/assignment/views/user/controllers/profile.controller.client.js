@@ -15,6 +15,10 @@
         }
         init();
 
+        function renderUser(user){
+            vm.user = user;
+        }
+
         vm.update = function (newUser) {
             UserService
                 .updateUser(userId, newUser)
@@ -25,10 +29,6 @@
                     vm.error = "unable to update user";
                 });
         };
-
-        function renderUser(user){
-            vm.user = user;
-        }
 
         function unregister(user) {
             var answer = confirm("Are you sure?");

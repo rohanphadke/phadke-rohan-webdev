@@ -1,0 +1,61 @@
+<div class="container">
+
+    <h1>Register</h1>
+
+    <div ng-show="model.error" class="alert alert-danger">
+        {{model.error}}
+    </div>
+
+    <div ng-show="model.message" class="alert alert-info">
+        {{model.message}}
+    </div>
+
+    <label for="username-input-register">Username</label>
+    <input ng-model="model.user.username"
+           type="text"
+           class="form-control"
+           placeholder="username"
+           id="username-input-register"/>
+
+    <label for="first-name-input-register">First Name</label>
+    <input ng-model="model.user.firstName"
+           type="text"
+           class="form-control"
+           placeholder="Alice"
+           id="first-name-input-register"/>
+
+    <label for="last-name-input-register">Last Name</label>
+    <input ng-model="model.user.lastName"
+           type="text"
+           class="form-control"
+           placeholder="Wonderland"
+           id="last-name-input-register"/>
+
+    <label for="email-input-register">Email</label>
+    <input ng-model="model.user.email"
+           type="email"
+           class="form-control"
+           placeholder="alice@wonderland.com"
+           id="email-input-register"/>
+
+    <label for="password-input-register">Password</label>
+    <input ng-model="model.user.password"
+           type="password"
+           class="form-control"
+           placeholder="password"
+           id="password-input-register"/>
+
+    <label for="password-confirm-input-register">Confirm Password</label>
+    <input ng-model="model.user.retypepassword"
+           type="password"
+           class="form-control"
+           placeholder="confirm password"
+           id="password-confirm-input-register"/>
+
+    <a class="btn btn-primary btn-block"
+       ng-click="model.register(model.user)">Register</a>
+
+    <a class="btn btn-danger  btn-block"
+       href="#/login">Cancel</a>
+
+</div>

@@ -14,12 +14,12 @@
             vm.pageId = $routeParams.pid;
             vm.widgetId = $routeParams.wgid;
             vm.widgetType = $routeParams.wtid;
+            console.log("in iaqweqweqwe");
 
             WidgetService
                 .findAllWidgetsForPage(vm.pageId)
                 .success(function (widgets) {
                     vm.widgets = widgets;
-                    vm.widget.operation = "new";
                 })
         }
         init();
@@ -35,6 +35,7 @@
                     if(newWidget == null){
                         vm.error = "widget not added";
                     }else{
+                        vm.widget.operation = "new";
                         $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget");
                         init();
                     }

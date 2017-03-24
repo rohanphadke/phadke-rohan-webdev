@@ -28,7 +28,6 @@ module.exports=function (app,mongoose) {
     }
 
     function createPageForWebsite(websiteId,newPage) {
-        console.log("in create page for website model server");
         var d = q.defer();
         websiteModel.update({_id:websiteId},{$push:{pages:newPage}},function (err,status) {
             if(err){
@@ -41,8 +40,6 @@ module.exports=function (app,mongoose) {
     }
 
     function findAllPagesForWebsite(websiteId) {
-        console.log("in find all pages for website model server");
-        console.log(websiteId);
         var d = q.defer();
         pageModel.find({_website:websiteId},function (err,status) {
             if(err){
@@ -55,8 +52,6 @@ module.exports=function (app,mongoose) {
     }
 
     function findPageById(pageId) {
-        console.log("in find page by id model server");
-        console.log(pageId);
         var d = q.defer();
         pageModel.findOne({_id:pageId},function (err,status) {
             if(err){
@@ -69,18 +64,11 @@ module.exports=function (app,mongoose) {
     }
 
     function updatePage(pageId,page) {
-        console.log("in update page model server");
-        console.log(pageId);
-        console.log(page);
         var d = q.defer();
 
         pageName = page.name;
         pageTitle = page.title;
         pageDescription = page.description;
-        console.log(pageName);
-        console.log(pageTitle);
-        console.log(pageDescription);
-        console.log(page._website);
 
         pageModel.update({_id:page._id},{$set:{'name':pageName,'title':pageTitle,'description':pageDescription}},function (err,status,res) {
             if(err){
@@ -104,7 +92,6 @@ module.exports=function (app,mongoose) {
     }
 
     function deletePage(pageId) {
-        console.log("in delete page website model server");
         var d = q.defer();
         websiteModel.update({},{$pull:{pages: {_id:pageId}}},function (err,status) {
             if(err){

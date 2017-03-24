@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 
 var UserSchema = mongoose.Schema({
     _page : {type:mongoose.Schema.Types.ObjectId, ref: 'pageModel'},
-    type : String, enum: ['HEADING', 'IMAGE', 'YOUTUBE', 'HTML', 'INPUT'],
+    type : {type: String, enum: ['HEADER', 'IMAGE', 'YOUTUBE', 'HTML', 'INPUT']},
     name : String,
     text : String,
     placeholder : String,
@@ -16,7 +16,8 @@ var UserSchema = mongoose.Schema({
     icon : String,
     deletable : Boolean,
     formatted : Boolean,
-    dateCreated : Date
+    dateCreated : Date,
+    order : Number
 }, {collection: 'assignment.widget'});
 
 module.exports = UserSchema;

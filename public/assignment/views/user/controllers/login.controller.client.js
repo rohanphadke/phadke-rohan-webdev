@@ -12,11 +12,11 @@
         init();
 
         function login(user) {
-            var promise = UserService.findUserByCredentials(user.username, user.password);
-            promise
+            UserService
+                .findUserByCredentials(user.username, user.password)
                 .success(function (user){
                     var loginUser = user;
-                    if(loginUser != null) {
+                    if(loginUser !== null) {
                         $location.url('/user/' + loginUser._id);
                     } else {
                         vm.error = 'user not found';

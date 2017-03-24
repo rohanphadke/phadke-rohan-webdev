@@ -16,13 +16,12 @@
             vm.widgetType = $routeParams.wtid;
             vm.createWidgetForFlickr = createWidgetForFlickr;
             vm.widget = {};
-            console.log("in iaqweqweqwe");
-            console.log(vm.widgetType);
 
             WidgetService
                 .findAllWidgetsForPage(vm.pageId)
                 .success(function (widgets) {
                     vm.widgets = widgets;
+                    vm.len=vm.widgets.length;
                 })
         }
         init();
@@ -33,9 +32,9 @@
 
         function createWidget(pid,widget) {
             WidgetService
-                .createWidget(pid,widget,vm.widgetType)
+                .createWidget(pid,widget,vm.widgetType,vm.len)
                 .success(function (newWidget) {
-                    if(newWidget == null){
+                    if(newWidget === null){
                         vm.error = "widget not added";
                     }else{
                         vm.widget.operation = "new";
@@ -49,17 +48,14 @@
         }
 
         function createWidgetForFlickr(pid,widget) {
-            console.log("in flickr create");
-            console.log(pid);
-            console.log(widget);
             WidgetService
                 .createWidget(pid,widget,vm.widgetType)
                 .success(function (newWidget) {
-                    if(newWidget == null){
+                    if(newWidget === null){
                         vm.error = "widget not added";
                     }else{
                         vm.widget.operation = "new";
-                        $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget/api/flickr");
+                        $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget/" + newWidget._id + "/flickr");
                         init();
                     }
                 })

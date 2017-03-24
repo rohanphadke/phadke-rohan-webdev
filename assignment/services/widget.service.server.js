@@ -10,6 +10,7 @@ module.exports = function (app,model) {
     app.put('/api/widget/:widgetId', updateWidget);
     app.delete('/api/widget/:widgetId', deleteWidget);
     app.post('/api/upload',upload.single('myFile'), uploadImage);
+    app.put('/api/reorder/:pageId/order/initial/:startIndex/final/:endIndex', updateOrder);
 
     var widgets = [
         { "_id": "123", "widgetType": "HEADER", "pageId": "234", "name": "GIZMODO Header", "size": 2, "text": "GIZMODO"},
@@ -26,19 +27,13 @@ module.exports = function (app,model) {
     function createWidget(req,res){
         var newWidget = req.body;
         var pageId = req.params.pageId;
-        console.log("in create widget service server");
-        console.log(newWidget);
-        console.log(pageId);
         newWidget._page = pageId;
 
         widgetModel.createWidget(pageId,newWidget)
             .then(function (wdg) {
-
                 res.json(wdg);
             },
             function (error) {
-                console.log("in error");
-                console.log(error);
                 res.sendStatus(500);
             });
     }
@@ -63,7 +58,7 @@ module.exports = function (app,model) {
                     res.json(widget);
                 },
                 function (error) {
-                    res.send(404);
+                    res.sendStatus(404);
                 });
     }
 
@@ -71,7 +66,6 @@ module.exports = function (app,model) {
         var widget = req.body;
         var widgetId = req.params.widgetId;
 
-        console.log("in update widget service server");
         widgetModel.updateWidget(widgetId,widget)
             .then(function (widget) {
                     res.json(widget);
@@ -112,18 +106,35 @@ module.exports = function (app,model) {
         var mimetype      = myFile.mimetype;
 
         if(widgetOperation == "edit"){
-            for(var wg in widgets){
-                if(widgets[wg]._id == widgetId){
-                    widgets[wg].url= "../../../../../uploads/"+filename;
+            widgetModel.findWidgetById(widgetId)
+                .then(function (widget) {
+                    widget.url= "../../../../../uploads/"+filename;
+                    widget.save();
                     res.redirect("../../assignment/index.html#/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget");
-                }
-            }
+                });
         }else{
-            widgetId = (new Date()).getTime();
-            widgets.push({"_id": widgetId, "widgetType": "IMAGE", "pageId": pageId, "name": widgetName, "width": width,
-                "url": "../../../../../uploads/"+filename});
+            widget={};
+            widget._page=pageId;
+            widget.type="IMAGE";
+            widget.name=widgetName;
+            widget.width="100%";
+            widget.url="../../../../../uploads/"+filename;
+            widgetModel.createWidget(pageId,widget);
             res.redirect("../../assignment/index.html#/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget");
         }
+    }
+
+    function updateOrder(req,res) {
+        var pageId = req.params.pageId;
+        var startIndex = req.params.startIndex;
+        var endIndex = req.params.endIndex;
+        widgetModel.reorderWidget(pageId,startIndex,endIndex)
+            .then(function (status) {
+                res.sendStatus(200);
+            },
+            function (error) {
+                res.sendStatus(500);
+            });
     }
 
 };

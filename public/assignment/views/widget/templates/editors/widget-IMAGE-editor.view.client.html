@@ -1,22 +1,22 @@
 <h1>IMAGE Editor</h1>
 
 <label for="image-name">Widget Name</label>
-<input ng-model="model.widget.name"
+<input ng-model="widget.name"
        class="form-control"
        id="image-name"/>
 
 <label for="image-width">Image Width (in %)</label>
-<input ng-model="model.widget.width"
+<input ng-model="widget.width"
        class="form-control"
        id="image-width"/>
 
 <label for="image-url">URL</label>
-<input ng-model="model.widget.url"
+<input ng-model="widget.url"
           class="form-control"
           id="image-url"/>
 
 <form action="/api/upload"  method="post" enctype="multipart/form-data">
-    <input  name="myFile"   type="file" class="form-control"/>
+    <input  name="myFile"   type="file" class="form-control value"/>
     <input  name="width"    value="{{model.widget.width}}" style="display: none"/>
     <input name="widgetName" value="{{model.widget.name}}" style="display:none"/>
     <input name="widgetId" value="{{model.widget._id}}" style="display:none"/>

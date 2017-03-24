@@ -13,22 +13,14 @@
             vm.userId = $routeParams.uid;
             vm.websiteId = $routeParams.wid;
             vm.pageId = $routeParams.pid;
-            console.log(vm.userId);
-            console.log(vm.websiteId);
-            console.log(vm.pageId);
             WidgetService
                 .findAllWidgetsForPage(vm.pageId)
                 .success(function (widgets) {
-                    console.log("all found");
-                    console.log(widgets);
                     vm.widgets = [];
                     for(var w in widgets){
                         vm.widgets.push(widgets[w]);
                     }
-                    console.log(vm.widgets);
                 });
-            console.log("widgets are");
-            console.log(vm.widgets);
 
 
         }
@@ -49,5 +41,16 @@
             var url = "https://www.youtube.com/embed/"+id;
             return $sce.trustAsResourceUrl(url);
         }
+
+        $('#wdgt-list').sortable({
+            axis: "y",
+            start: function (event, ui) {
+                startIndex=ui.item.index();
+            },
+            stop: function (event, ui) {
+                endIndex=ui.item.index();
+                return WidgetService.updateOrder(vm.pageId, startIndex, endIndex);
+            }
+        });
     }
 })();

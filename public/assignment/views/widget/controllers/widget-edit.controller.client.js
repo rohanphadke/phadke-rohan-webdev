@@ -24,9 +24,6 @@
                 .findWidgetById(vm.widgetId)
                 .success(function (widget) {
                     vm.widget = widget;
-                    console.log("found this widget");
-                    console.log(widget);
-                    console.log(vm.widget);
                     vm.widget.operation = "edit";
                     vm.widgetType = vm.widget.type;
                 })
@@ -41,7 +38,7 @@
             WidgetService
                 .updateWidget(widgetId, widget)
                 .success(function (update) {
-                    if(update == null){
+                    if(update === null){
                         vm.error = "update unsuccessful";
                     }else{
                         vm.message = "update successful";
@@ -58,8 +55,8 @@
                 .deleteWidget(wgid)
                 .success(function () {
                     $location.url('/user/' + vm.userId + '/website/' + vm.websiteId + '/page/' + vm.pageId + '/widget');
-                })
-                .error(function () {
+                },
+                    function () {
                     vm.error = "widget update unsuccessful";
                 });
         }

@@ -25,6 +25,7 @@
             "createWidget": createWidget,
             "updateWidget": updateWidget,
             "deleteWidget": deleteWidget,
+            "updateOrder" : updateOrder,
             "photoSearch" : photoSearch
         };
 
@@ -36,9 +37,10 @@
             return $http.get('/api/widget/'+widgetId);
         }
 
-        function createWidget(pageId, widget, widgetType) {
+        function createWidget(pageId, widget, widgetType,len) {
             widget.pageId = pageId;
             widget.type = widgetType;
+            widget.order = len;
             return $http.post('/api/page/'+pageId+'/widget',widget);
         }
 
@@ -48,6 +50,11 @@
 
         function deleteWidget(wgid){
             return $http.delete('/api/widget/' + wgid);
+        }
+
+        function updateOrder(pageId,startIndex,endIndex) {
+            //return $http.put('/api/reorder/'+pid,start,end);
+            return $http.put('/api/reorder/'+ pageId +'/order/initial/' + startIndex + '/final/' + endIndex);
         }
 
         function photoSearch(input) {

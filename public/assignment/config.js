@@ -65,7 +65,7 @@
             })
             .when("/user/:uid/website/:wid/page/:pid/widget/new",{
                 templateUrl: 'views/widget/templates/widget-chooser.view.client.html',
-                controller: 'widgetNewController',
+                controller: 'widgetChooseController',
                 controllerAs: 'model'
             })
             .when("/user/:uid/website/:wid/page/:pid/widget/:wgid",{

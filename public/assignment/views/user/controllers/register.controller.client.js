@@ -26,7 +26,7 @@
                         .error(function(){
                             vm.error = 'sorry could not register';
                         });
-                });
+                })
         }
     }
 })();

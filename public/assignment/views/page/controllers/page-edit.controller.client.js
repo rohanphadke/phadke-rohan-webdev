@@ -31,7 +31,7 @@
             PageService
                 .updatePage(pid,page)
                 .success(function (update) {
-                    if(update == null){
+                    if(update === null){
                         vm.error = "update unsuccessful";
                     }else{
                         vm.message = "update successful";

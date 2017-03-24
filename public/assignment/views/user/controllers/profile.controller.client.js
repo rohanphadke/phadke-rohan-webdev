@@ -11,7 +11,11 @@
         function init() {
             UserService
                 .findUserById(userId)
-                .success(renderUser);
+                .success(function(user){
+                    renderUser(user);
+                })
+                .error(function (error) {
+                });
         }
         init();
 

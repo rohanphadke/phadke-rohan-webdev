@@ -12,7 +12,7 @@ module.exports=function (app,mongoose) {
         findWidgetById : findWidgetById,
         updateWidget : updateWidget,
         deleteWidget : deleteWidget,
-//        reorderWidget : reorderWidget
+        reorderWidget : reorderWidget
     };
     return api;
 
@@ -29,27 +29,18 @@ module.exports=function (app,mongoose) {
     }
 
     function createWidget(pageId,newWidget) {
-        console.log("in create widget for page model server");
-        console.log(pageId);
-        console.log(newWidget);
         var d = q.defer();
         pageModel.update({_id:pageId},{$push:{widgets:newWidget}},function (err,status) {
-            console.log("in update");
-            console.log(err);
-            console.log(status);
             if(err){
                 d.reject(new Error(err));
             }else{
                 d.resolve(createWidgetRevisited(newWidget));
             }
         });
-        console.log(d.promise);
         return d.promise;
     }
 
     function findAllWidgetsForPage(pageId) {
-        console.log("in find all widgets for page model server");
-        console.log(pageId);
         var d = q.defer();
         widgetModel.find({_page:pageId},function (err,status) {
             if(err){
@@ -57,13 +48,11 @@ module.exports=function (app,mongoose) {
             }else{
                 d.resolve(status);
             }
-        });
+        }).sort({order:1}).exec();
         return d.promise;
     }
 
     function findWidgetById(widgetId) {
-        console.log("in find widget by id model server");
-        console.log(widgetId);
         var d = q.defer();
         widgetModel.findOne({_id:widgetId},function (err,status) {
             if(err){
@@ -76,13 +65,10 @@ module.exports=function (app,mongoose) {
     }
 
     function updateWidget(widgetId,widget) {
-        console.log("in update widget model server");
-        console.log(widgetId);
-        console.log(widget);
         var d = q.defer();
 
         if(widget.type == 'HEADING'){
-            widgetModel.update({_id:widgetId},{$set:{'name':widget.name,'text':widget.text,'size':widget.size}},function (err,status) {
+            widgetModel.update({_id:widgetId},{$set:{'name':widget.name,'text':widget.text,'size':widget.size, 'order':widget.order}},function (err,status) {
                 if(err){
                     d.reject(new Error(err));
                 }else{
@@ -90,7 +76,7 @@ module.exports=function (app,mongoose) {
                 }
             });
         }else if(widget.type == 'YOUTUBE'){
-            widgetModel.update({_id:widgetId},{$set:{'name':widget.name,'width':widget.width,'url':widget.url}},function (err,status) {
+            widgetModel.update({_id:widgetId},{$set:{'name':widget.name,'width':widget.width,'url':widget.url, 'order':widget.order}},function (err,status) {
                 if(err){
                     d.reject(new Error(err));
                 }else{
@@ -98,7 +84,7 @@ module.exports=function (app,mongoose) {
                 }
             });
         }else if(widget.type == 'HTML'){
-            widgetModel.update({_id:widgetId},{$set:{'name':widget.name,'text':widget.text}},function (err,status) {
+            widgetModel.update({_id:widgetId},{$set:{'name':widget.name,'text':widget.text, 'order':widget.order}},function (err,status) {
                 if(err){
                     d.reject(new Error(err));
                 }else{
@@ -106,7 +92,7 @@ module.exports=function (app,mongoose) {
                 }
             });
         }else if(widget.type == 'IMAGE'){
-            widgetModel.update({_id:widgetId},{$set:{'name':widget.name,'width':widget.width,'url':widget.url, 'myFile':widget.myFile}},function (err,status) {
+            widgetModel.update({_id:widgetId},{$set:{'name':widget.name,'width':widget.width,'url':widget.url, 'myFile':widget.myFile, 'order':widget.order}},function (err,status) {
                 if(err){
                     d.reject(new Error(err));
                 }else{
@@ -129,7 +115,6 @@ module.exports=function (app,mongoose) {
     }
 
     function deleteWidget(widgetId) {
-        console.log("in delete widdget website model server");
         var d = q.defer();
         pageModel.update({},{$pull:{widgets: {_id:widgetId}}},function (err,status) {
             if(err){
@@ -139,6 +124,30 @@ module.exports=function (app,mongoose) {
             }
         });
 
+        return d.promise;
+    }
+    
+    function reorderWidget(pageId,startIndex, endIndex) {
+        var d = q.defer();
+        findAllWidgetsForPage(pageId)
+            .then(function (widgets) {
+                widgets.forEach(function (w) {
+                    if(startIndex<endIndex){
+                        if(w.order >startIndex && w.order<=endIndex){
+                            widgetModel.update({_id:w._id},{order:w.order-1}).exec();
+                        }else if(w.order == startIndex){
+                            widgetModel.update({_id:w._id},{order:endIndex}).exec();
+                        }
+                    }else if(startIndex>endIndex){
+                        if(w.order >=endIndex && w.order < startIndex){
+                            widgetModel.update({_id:w._id},{order:w.order+1}).exec();
+                        }else if(w.order == startIndex){
+                            widgetModel.update({_id:w._id},{order:endIndex}).exec();
+                        }
+                    }
+                });
+                widgets.save();
+            });
         return d.promise;
     }
 };

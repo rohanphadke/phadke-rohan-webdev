@@ -23,14 +23,14 @@
             PageService
                 .createPage(wid,page)
                 .success(function (newPage) {
-                    if(newPage == null){
+                    if(newPage === null){
                         vm.error = "page not added";
                     }else{
                         init();
                         $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page");
                     }
-                })
-                .error(function () {
+                },
+                    function () {
                     vm.error = "page not created";
                 });
         }

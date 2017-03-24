@@ -22,7 +22,7 @@
             WebsiteService
                 .createWebsite(uid,website)
                 .success(function (newWebsite) {
-                    if(newWebsite == null){
+                    if(newWebsite === null){
                         vm.error = "website not added";
                     }else{
                         init();

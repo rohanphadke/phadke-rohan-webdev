@@ -70,7 +70,7 @@ module.exports = function (app,model) {
             .findUserById(userId)
             .then(function (user) {
                     if(user){
-                        if(user.length == 0){
+                        if(user.length === 0){
                             res.sendStatus(404);
                         }else{
                             res.json(user);
@@ -101,8 +101,7 @@ module.exports = function (app,model) {
             .findUserByUsername(username)
             .then(function (user) {
                 if(user){
-                    console.log(user);
-                    if(user.length == 0){
+                    if(user.length === 0){
                         res.sendStatus(404);
                     }else{
                         res.json(user[0]);
@@ -124,7 +123,7 @@ module.exports = function (app,model) {
             .findUserByCredentials(username,password)
             .then(function (user) {
                 if(user){
-                    if(user.length == 0){
+                    if(user.length === 0){
                         res.sendStatus(404);
                     }else{
                         res.json(user);

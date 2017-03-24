@@ -1,7 +1,8 @@
-qwertyuiop
-<div ng-if="widget.formatted"
-     text-angular ta-toolbar="[['h1','h2','h3'],['bold','underline','italics','strikeThrough'],['ul','ol'],
-        ['justifyLeft','justifyCenter','justifyRight','justifyFull'],['indent','outdent'],['html']]" ng-model="widget.text">
+<div ng-model="model.widget.text"
+     text-angular
+     ta-toolbar="[['h1','h2','h3'],['bold','italics','underline','strikeThrough'],
+        ['ul','ol'],['justifyLeft','justifyCenter','justifyRight','justifyFull'],
+        ['indent','outdent'],['html']]">
 </div>
 
 <input ng-if="!widget.formatted && (!widget.rows || widget.rows == 1)"

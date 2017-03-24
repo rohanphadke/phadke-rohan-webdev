@@ -31,7 +31,7 @@
             WebsiteService
                 .updateWebsite(vm.websiteId,website)
                 .success(function (update) {
-                    if(update == null){
+                    if(update === null){
                         vm.error = "update unsuccessful";
                     }else{
                         vm.message = "update successful";

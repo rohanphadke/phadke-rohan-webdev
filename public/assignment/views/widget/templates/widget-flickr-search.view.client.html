@@ -1,0 +1,50 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-text pull-left">
+            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/new">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+        </div>
+        <div class="navbar-brand pull-left">
+            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{model.widgetId}}" class="no-underline-hover">
+                Flickr Search
+            </a>
+        </div>
+        <div class="navbar-text pull-right">
+            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget" class="no-underline-hover">
+                Back
+            </a>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <div class="container-fluid">
+        <input ng-model="model.inputtext"
+               type="text"
+               class="form-control"/>
+    </div>
+    <div class="container-fluid">
+        <a ng-click=model.photoSearch(model.inputtext) class="btn btn-warning btn-block margin-top-5">
+            <span class="glyphicon glyphicon-search"></span> Search Images
+        </a>
+    </div>
+</div>
+
+<div class="row margin-left-10 margin-right-10 margin-bottom-5">
+    <div class="text-center col-xs-4" ng-repeat="photo in model.photos.photo">
+        <a ng-click="model.photoSelect(vm.widgetId,photo)" type=button">
+            <img style = "width: 100%; padding-top: 5px; padding-bottom: 5px" ng-src="https://farm{{photo.farm}}.staticflickr.com/{{photo.server}}/{{photo.id}}_{{photo.secret}}_m.jpg"/>
+        </a>
+    </div>
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <div class="navbar-text pull-right">
+            <a href="#/user/{{model.userId}}" class="no-underline-hover">
+                <span class="glyphicon glyphicon-user margin-left-10"></span>
+            </a>
+        </div>
+    </div>
+</nav>

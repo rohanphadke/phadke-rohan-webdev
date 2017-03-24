@@ -24,7 +24,8 @@
             "findWidgetById": findWidgetById,
             "createWidget": createWidget,
             "updateWidget": updateWidget,
-            "deleteWidget": deleteWidget
+            "deleteWidget": deleteWidget,
+            "photoSearch" : photoSearch
         };
 
         function findAllWidgetsForPage(pageId) {
@@ -47,6 +48,15 @@
 
         function deleteWidget(wgid){
             return $http.delete('/api/widget/' + wgid);
+        }
+
+        function photoSearch(input) {
+            var key = "21f24cfbfa9ac64c73a5a0edfe3351dc";
+            var secret = "2878ca058e1518f3";
+            var urlBase = "https://api.flickr.com/services/rest/?method=flickr.photos.search&format=json&api_key=API_KEY&text=TEXT";
+
+            var url = urlBase.replace("API_KEY", key).replace("TEXT", input);
+            return $http.get(url);
         }
     }
 })();

@@ -7,14 +7,17 @@
         var vm = this;
         vm.getEditorTemplateUrl = getEditorTemplateUrl;
         vm.createWidget = createWidget;
-        
+
         function init(){
             vm.userId = $routeParams.uid;
             vm.websiteId = $routeParams.wid;
             vm.pageId = $routeParams.pid;
             vm.widgetId = $routeParams.wgid;
             vm.widgetType = $routeParams.wtid;
+            vm.createWidgetForFlickr = createWidgetForFlickr;
+            vm.widget = {};
             console.log("in iaqweqweqwe");
+            console.log(vm.widgetType);
 
             WidgetService
                 .findAllWidgetsForPage(vm.pageId)
@@ -43,6 +46,24 @@
                 .error(function () {
                     vm.error = "widget not created";
                 })
+        }
+
+        function createWidgetForFlickr(pid,widget) {
+            console.log("in flickr create");
+            console.log(pid);
+            console.log(widget);
+            WidgetService
+                .createWidget(pid,widget,vm.widgetType)
+                .success(function (newWidget) {
+                    if(newWidget == null){
+                        vm.error = "widget not added";
+                    }else{
+                        vm.widget.operation = "new";
+                        $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget/api/flickr");
+                        init();
+                    }
+                })
+
         }
     }
 })();

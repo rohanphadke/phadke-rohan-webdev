@@ -80,6 +80,12 @@ body {
     font-size: 2.0vmax
 }
 
+@media (min-width: 768px){
+    #aboutmetext{
+        margin-top: 15%;
+    }
+}
+
 /*#imghov1 #imghov2:hover {*/
     /*border:2px solid #bbb69c;*/
     /*box-shadow: 0 0 10px #333;*/

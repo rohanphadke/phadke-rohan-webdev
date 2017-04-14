@@ -13,7 +13,7 @@ require ("./test/app.js")(app);
 //require("./assignment/app.js")(app);
 require("./assignment/model/models.server")(app);
 
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 3001;
 
 app.listen(port);
 console.log("running..!!");

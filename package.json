@@ -1,4 +1,4 @@
-  {
+{
   "name": "web-dev",
   "version": "1.0.0",
   "description": "Web Dev at Northeastern University",
@@ -6,6 +6,7 @@
   "dependencies": {
     "body-parser": "^1.16.1",
     "express": "^4.13.4",
+    "fullpage.js": "^2.9.4",
     "mongoose": "^4.4.15",
     "multer": "^1.3.0",
     "q": "^1.5.0"
